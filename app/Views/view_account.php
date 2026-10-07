@@ -1,0 +1,9 @@
+<?= $this->extend('layout') ?>
+<?= $this->section('content') ?>
+<section class="hero-section py-5"><div class="container"><div class="row text-center"><div class="col-lg-8 mx-auto"><h1 class="display-5 fw-bold mb-3">Account Details</h1><p class="lead mb-0">Customer account information for Puihaha Electric</p></div></div></div></section>
+<section class="section-padding"><div class="container"><div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4"><a href="<?= base_url('dashboard') ?>" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</a><a href="<?= base_url('account/' . $account['id'] . '/edit') ?>" class="btn btn-primary"><i class="fas fa-pen me-2"></i>Edit Account</a></div>
+<div class="card shadow-lg"><div class="card-header bg-primary text-white p-4"><div class="d-flex justify-content-between align-items-center flex-wrap gap-2"><div><p class="small text-uppercase mb-1 opacity-75">Account Number</p><h2 class="h3 mb-0"><?= esc($account['account_number']) ?></h2></div><span class="badge <?= $account['status'] === 'active' ? 'bg-success' : ($account['status'] === 'inactive' ? 'bg-secondary' : 'bg-warning text-dark') ?> fs-6"><?= ucfirst(esc($account['status'])) ?></span></div></div>
+<div class="card-body p-4 p-lg-5"><div class="row g-4">
+<?php $fields = [['Customer Name',$account['customer_name']],['Address',$account['address']],['Phone',$account['phone']],['Email',$account['email']],['Meter Number',$account['meter_number']],['Connection Type',ucfirst($account['connection_type'])],['Created At',$account['created_at']],['Last Updated',$account['updated_at']]]; foreach ($fields as [$label,$value]): ?><div class="col-md-6"><div class="info-box"><div class="small text-muted text-uppercase fw-bold mb-1"><?= esc($label) ?></div><div class="fs-5"><?= esc($value ?? '—') ?></div></div></div><?php endforeach; ?>
+</div></div></div></div></section>
+<?= $this->endSection() ?>
